@@ -1,27 +1,39 @@
 package com.example.composeApp.presentation.main
 
-import com.example.composeApp.data.models.Article
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import com.example.composeApp.data.models.Source
 import com.example.composeApp.domain.usecases.GetArticleUseCase
+import com.example.composeApp.domain.usecases.GetTopLineUseCase
 import com.example.composeApp.presentation.base.BaseViewModel
-import com.example.composeApp.presentation.events.UiState
-import com.example.composeApp.presentation.events.UiState.Loading
+import com.example.composeApp.presentation.events.MainUIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    private val articleUseCase: GetArticleUseCase
+    private val articleUseCase: GetArticleUseCase,
+    private val topLineUseCase: GetTopLineUseCase
 ) : BaseViewModel() {
-    private val _uiState = MutableStateFlow<UiState>(Loading)
-    val uiState: StateFlow<UiState> = _uiState
+    private val _mainUIState = MutableStateFlow<MainUIState>(MainUIState.Loading)
+    val mainUIState: StateFlow<MainUIState> = _mainUIState
 
-    private val _article = MutableStateFlow<List<Article>>(emptyList())
-    val article: StateFlow<List<Article>> get() = _article
+    private val _sources = MutableStateFlow<List<Source>>(emptyList())
+    var sources: StateFlow<List<Source>> = _sources
+
+    var selectedNews: Source? by mutableStateOf(null)
+        private set
 
     init {
         viewModelScope.launch {
-            _uiState.value = UiState.Success(articleUseCase.invoke())
+            _sources.value = topLineUseCase.invoke()
+            _mainUIState.value = MainUIState.Success(topLineUseCase.invoke())
         }
+    }
+
+    fun setSelectedNews(index: Int) {
+        selectedNews = _sources.value[index]
     }
 
 }

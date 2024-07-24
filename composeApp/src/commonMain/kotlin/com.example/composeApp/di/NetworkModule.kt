@@ -11,14 +11,13 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 
-
 private const val BASE_URL = "https://newsapi.org"
 private const val TOKEN = "" // TODO; insert api token key
 
 val networkModule = module {
     single {
         HttpClient {
-            install(ContentNegotiation) {
+            install( ContentNegotiation) {
                 json(
                     Json {
                         prettyPrint = true

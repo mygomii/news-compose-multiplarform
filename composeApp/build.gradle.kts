@@ -39,11 +39,15 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
+            implementation(compose.material3)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(projects.shared)
+
+            implementation(libs.androidx.navigation)
             implementation(libs.androidx.lifecycle.viewmodel.compose)
+
 
             implementation(libs.koin.core)
             implementation(libs.koin.test)
@@ -57,6 +61,8 @@ kotlin {
 
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.ktor.serialization.kotlinx.cbor)
+
+            implementation(libs.github.compose.webview.multiplatform)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
