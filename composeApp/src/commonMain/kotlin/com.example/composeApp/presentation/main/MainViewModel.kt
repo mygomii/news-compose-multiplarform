@@ -19,8 +19,13 @@ class MainViewModel(
 
     init {
         viewModelScope.launch {
-            _sources.value = topLineUseCase.invoke()
-            _mainUIState.value = MainUIState.Success(topLineUseCase.invoke())
+            try {
+                _sources.value = topLineUseCase.invoke()
+                _mainUIState.value = MainUIState.Success(topLineUseCase.invoke())
+            } catch (e: Exception) {
+                _mainUIState.value = MainUIState.Error
+            }
+
         }
     }
 }

@@ -23,16 +23,21 @@ class ArticleViewModel(
 
     fun initializeView(searchText: String) {
         viewModelScope.launch {
-            _searchText.value = searchText
-            val articles = articleUseCase.invoke(searchText)
+            try {
+                _searchText.value = searchText
+                val articles = articleUseCase.invoke(searchText)
 
-            if (articles.isEmpty()) {
+                if (articles.isEmpty()) {
+                    _searchUIState.value = SearchUIState.Error
+                    return@launch
+                }
+
+                _articles.value = articles
+                _searchUIState.value = SearchUIState.Success(articles)
+            } catch (e: Exception) {
                 _searchUIState.value = SearchUIState.Error
-                return@launch
             }
 
-            _articles.value = articles
-            _searchUIState.value = SearchUIState.Success(articles)
 
         }
 
