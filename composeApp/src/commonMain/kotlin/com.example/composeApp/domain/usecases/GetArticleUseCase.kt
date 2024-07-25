@@ -6,5 +6,5 @@ import com.example.composeApp.data.repositories.ArticleRepository
 class GetArticleUseCase(
     private val repository: ArticleRepository
 ) {
-    suspend fun invoke(): List<Article> = repository.getArticles()
+    suspend fun invoke(searchText: String): List<Article> = repository.getArticles(searchText)
 }

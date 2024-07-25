@@ -13,7 +13,7 @@ import com.multiplatform.webview.web.rememberWebViewNavigator
 import com.multiplatform.webview.web.rememberWebViewState
 
 @Composable
-fun WebViewScreen(navHostController: NavHostController, url: String) {
+fun WebViewScreen(navController: NavHostController, url: String) {
     val state = rememberWebViewState(url)
     val navigator = rememberWebViewNavigator()
 
@@ -25,7 +25,7 @@ fun WebViewScreen(navHostController: NavHostController, url: String) {
                 navigator.navigateBack()
             }
             if (!navigator.canGoBack) {
-                navHostController.popBackStack()
+                navController.popBackStack()
             }
         },
         contents = {

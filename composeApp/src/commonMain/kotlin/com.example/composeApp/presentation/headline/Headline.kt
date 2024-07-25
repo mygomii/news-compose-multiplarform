@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.composeApp.extensions.urlToString
 import com.example.composeApp.presentation.main.MainViewModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -39,13 +40,11 @@ fun Headline(navController: NavHostController, viewModel: MainViewModel) {
                 title = sources[index].name,
                 description = sources[index].description ?: "",
                 onItemClick = {
-                    viewModel.setSelectedNews(index)
-                    navController.navigate("webview/${index}")
+                    navController.navigate("webView/${sources[index].url?.urlToString()}")
                 }
             )
         }
     }
-
 }
 
 
@@ -76,7 +75,6 @@ fun HeadlineItem(title: String, description: String, onItemClick: () -> Unit) {
             color = Color.Gray,
             fontStyle = FontStyle.Normal
         )
-
     }
 }
 

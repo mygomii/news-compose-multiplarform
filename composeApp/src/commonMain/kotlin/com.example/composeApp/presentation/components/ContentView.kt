@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 fun ContentView(
     canNavigateBack: Boolean,
     onBackClick: () -> Unit = {},
+    onSearchClick: () -> Unit = {},
     contents: @Composable () -> Unit = {}
 ) {
     Scaffold(
@@ -19,6 +20,9 @@ fun ContentView(
                 canNavigateBack = canNavigateBack,
                 onBackClick = {
                     onBackClick()
+                },
+                onSearchClick = {
+                    onSearchClick()
                 }
             )
         }) { paddingValues ->

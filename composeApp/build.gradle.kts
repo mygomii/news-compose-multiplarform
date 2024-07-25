@@ -63,6 +63,11 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.cbor)
 
             implementation(libs.github.compose.webview.multiplatform)
+
+            implementation(libs.coil.compose)
+            implementation(libs.coil.compose.core)
+            implementation(libs.coil.network.ktor)
+            implementation(libs.coil.mp)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)

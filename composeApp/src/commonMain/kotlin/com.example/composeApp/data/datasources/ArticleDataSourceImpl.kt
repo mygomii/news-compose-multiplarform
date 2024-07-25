@@ -10,10 +10,10 @@ import io.ktor.client.HttpClient
 class ArticleDataSourceImpl(
     private val client: HttpClient
 ) : ArticleDataSource {
-    override suspend fun getArticles(): List<Article> {
+    override suspend fun getArticles(searchText: String): List<Article> {
         return client.get<ArticleResponse>(
             route = "v2/everything",
-            queryPair = listOf(Pair("q", "bitcoin"))
+            queryPair = listOf(Pair("q", searchText))
         ).articles
     }
 

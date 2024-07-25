@@ -4,6 +4,6 @@ import com.example.composeApp.data.models.Article
 import com.example.composeApp.data.models.Source
 
 interface ArticleDataSource {
-    suspend fun getArticles(): List<Article>
+    suspend fun getArticles(searchText: String): List<Article>
     suspend fun getTopLine(): List<Source>
 }
