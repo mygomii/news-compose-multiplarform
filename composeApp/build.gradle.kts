@@ -36,6 +36,7 @@ kotlin {
             implementation(libs.ktor.client.android)
         }
         commonMain.dependencies {
+            implementation(projects.networkModule)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
@@ -53,15 +54,7 @@ kotlin {
             implementation(libs.koin.test)
             implementation(libs.koin.compose)
 
-            implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.serialization)
-            implementation(libs.ktor.client.encoding)
-            implementation(libs.ktor.client.logging)
-            implementation(libs.ktor.client.content.negotiation)
-
-            implementation(libs.ktor.serialization.kotlinx.json)
-            implementation(libs.ktor.serialization.kotlinx.cbor)
-
             implementation(libs.github.compose.webview.multiplatform)
 
             implementation(libs.coil.compose)

@@ -4,12 +4,10 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.jetbrainsCompose)
-    alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.kotlin.serialization)
 }
 
 kotlin {
+
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
@@ -24,15 +22,20 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(libs.koin.core)
-            implementation(libs.koin.test)
-            implementation(libs.koin.compose)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.serialization)
+            implementation(libs.ktor.client.encoding)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.client.content.negotiation)
+
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.ktor.serialization.kotlinx.cbor)
         }
     }
 }
 
 android {
-    namespace = "com.example.shared"
+    namespace = "com.mygomii.networkModule"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

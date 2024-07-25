@@ -1,4 +1,4 @@
-package com.example.composeApp.extensions
+package com.mygomii.networkdModule
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body

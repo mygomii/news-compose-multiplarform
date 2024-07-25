@@ -4,7 +4,7 @@ import com.example.composeApp.data.dto.ArticleResponse
 import com.example.composeApp.data.dto.TopLineResponse
 import com.example.composeApp.data.models.Article
 import com.example.composeApp.data.models.Source
-import com.example.composeApp.extensions.get
+import com.mygomii.networkdModule.get
 import io.ktor.client.HttpClient
 
 class ArticleDataSourceImpl(
